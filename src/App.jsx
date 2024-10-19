@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 
 const App = () => {
+  const [bgColor, setBgColor] = useState('white'); 
   const [data, setData] = useState('');
   const [come, setCome] = useState([]);
+
+  const handleColor = (color)=>{
+    setBgColor(color);
+  }
 
   const changeHandler = (e) => {
     setData(e.target.value);
@@ -22,7 +27,18 @@ const App = () => {
 
   return (
     <>
-      <div className="flex items-center justify-center h-screen bg-gray-400">
+      <div className="flex items-center justify-center h-screen "style={{background:bgColor}}>
+        {
+          bgColor === "black" ? (
+            <i className="far fa-sun mr-10 text-white" onClick={()=>handleColor("white")}></i>
+          ) : (
+            <i className="fas fa-moon mr-10" onClick={()=>handleColor("black")} ></i>
+          )
+        }
+      
+
+      
+
         <div className="border overflow-y-auto bg-gray-500 outline-none border-gray-500 w-[450px] rounded-xl h-[500px] p-10">
           <h1 className="text-center text-white font-bold text-lg">To Do List</h1>
 
